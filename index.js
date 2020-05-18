@@ -11,11 +11,9 @@ const sequelizeAuto = require('./util/sequelizeAuto');
 
 const app = new express()
 
-const router = require('./routers/router.js')
+const router = require('./routers/mainRouter.js')
 
-
-
-router.router(app)
+router.mainRouter(app)
 
 
 const service = {
