@@ -6,18 +6,7 @@ const {  notFound , handleError } = require('./util/error-handler')
 //Getting sequelize object
 const sequelize = require('./util/sequelize');
 //logging
-var bunyan = require('bunyan');
-var log = bunyan.createLogger({name: 'assessment' , streams: [
-    {
-      level: 'info',
-      stream: process.stdout            // log INFO and above to stdout
-    },
-    {
-      level: 'info',
-      path: './info.log'  // log info and above to a file
-    }
-  ]});
-
+var { logger } = require('./util/logger');
 
 //For auto creating models from tables in Data base
 const sequelizeAuto = require('./util/sequelizeAuto');
@@ -30,7 +19,7 @@ router.mainRouter(app)
 app.use(notFound)
 app.use(handleError)
 
-log.info('welcome');
+logger.info('welcome');
 //log.warn({lang: 'english'}, 'au revoir');
 
 const service = {
