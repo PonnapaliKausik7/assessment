@@ -2,7 +2,7 @@ const mongo=require('./mongo');
 const env = require('./env');
 const express = require('express');
 const db = require('./util/database');
-
+const {  notFound , handleError } = require('./util/error-handler')
 //Getting sequelize object
 const sequelize = require('./util/sequelize');
 
@@ -13,8 +13,12 @@ const app = new express()
 
 const router = require('./routers/mainRouter.js')
 
+//Routers
 router.mainRouter(app)
 
+//exception handling
+app.use(notFound)
+app.use(handleError)
 
 const service = {
     async run() {
